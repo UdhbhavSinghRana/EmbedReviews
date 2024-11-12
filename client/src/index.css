@@ -1,7 +1,7 @@
 :root {
   color-scheme: light dark;
   color: lightgray;
-  background-color: #242424;
+  background-color: #171717;
 }
 
 @tailwind base;
