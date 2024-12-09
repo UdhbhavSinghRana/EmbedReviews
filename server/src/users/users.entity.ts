@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Exclude } from '@nestjs/class-transformer';
 
 @Entity()
 export class Users {
@@ -11,6 +12,7 @@ export class Users {
   @Column()
   name: string;
 
+  @Exclude()
   @Column()
   password: string;
 }

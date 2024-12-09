@@ -1,12 +1,10 @@
-import { IsEmail, IsString } from '@nestjs/class-validator';
+import { Exclude, Expose } from 'class-transformer';
 
 export class CreateUserDto {
-  @IsString()
+  @Expose()
   name: string;
-
-  @IsEmail()
+  @Expose()
   email: string;
-
-  @IsString()
+  @Exclude()
   password: string;
 }
