@@ -3,6 +3,9 @@
   color: lightgray;
   background-color: #171717;
 }
+#root {
+  height: 100vh;
+}
 
 @tailwind base;
 @tailwind components;

@@ -4,7 +4,7 @@ import { TopNavigation } from "../../shared/components/topNavigation/topNavigati
 import { WelcomeScreen } from "./components/welcomeScreen.tsx"
 import { WelcomeScreenWrapper } from "./styles.ts"
 
-const HomeScreen: React.FC<HomeScreenContextType> = ({}) => {
+export const HomeScreen: React.FC<HomeScreenContextType> = ({}) => {
 	return (
 		<React.Fragment>
 			<TopNavigation />
