@@ -1,7 +1,7 @@
 import { authDP } from "./authAPI"
 
-export const getDataProvider = () => {
-	return {
-		authUser: authDP()
-	}
-}
+const dataProvider = () => ({
+	authUser: authDP()
+})
+
+export const getDataProvider = () => dataProvider()

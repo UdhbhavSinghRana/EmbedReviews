@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react"
 import { AuthTypes } from "../types/authTypes.ts"
 import { signInUserThunkCreator } from "../thunks/signInUser/signInUser.ts"
+import { useDispatch } from "react-redux"
 
 export const SignUpCard = () => {
 	return (
@@ -74,7 +75,8 @@ export const LoginCard = ({ dispatch }: { dispatch: any }) => {
 	)
 }
 
-export const AuthCard = ({authScreen, dispatch}: { authScreen: AuthTypes, dispatch: any }) => {
+export const AuthCard = ({authScreen}: { authScreen: AuthTypes }) => {
+	const dispatch = useDispatch()
 	return (
 		<Fragment>
 			{authScreen === AuthTypes.SIGNUP ? <SignUpCard/> : <LoginCard dispatch={dispatch}/>}

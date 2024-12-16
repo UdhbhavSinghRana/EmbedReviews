@@ -10,7 +10,9 @@ export const store = () => {
 		middleware: getDefaultMiddleware =>
 			getDefaultMiddleware({
 				thunk: {
-					extraArgument: getDataProvider()
+					extraArgument: {
+						dataProvider: getDataProvider()
+					}
 				}
 			})
 	})
