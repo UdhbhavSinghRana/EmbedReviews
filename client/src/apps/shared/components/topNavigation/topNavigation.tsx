@@ -5,17 +5,45 @@ export const TopNavigation = () => {
 		<React.Fragment>
 			<div className='flex justify-between p-2 shadow-2xl bg-gray-950'>
 				<div>
-					EmbedReviews
+					<a className="text-purple-600 hover:text-gray-200 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+						 href="/">
+						EmbedReviews
+					</a>
 				</div>
 				<div className='flex gap-5'>
 					<div>
-						Home
+						<a
+							className="text-purple-600 hover:text-gray-200 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+							href="/">
+							Home
+						</a>
 					</div>
 					<div>
-						Features
+						<a
+							className="text-purple-600 hover:text-gray-200 dark:hover:text-gray-200 transition duration-150 ease-in-out">
+							Features
+						</a>
 					</div>
 					<div>
-						Dashboard
+						<a
+							className="text-purple-600 hover:text-gray-200 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+							href="/signup">
+							Dashboard
+						</a>
+					</div>
+					<div>
+						<a
+							className="text-purple-600 hover:text-gray-200 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+							href="/signup">
+							SignUp
+						</a>
+					</div>
+					<div>
+						<a
+							className="text-purple-600 hover:text-gray-200 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+							href="/signin">
+							SignIn
+						</a>
 					</div>
 				</div>
 			</div>

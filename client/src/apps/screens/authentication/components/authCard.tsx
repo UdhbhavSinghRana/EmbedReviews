@@ -1,5 +1,6 @@
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 import { AuthTypes } from "../types/authTypes.ts"
+import { signInUserThunkCreator } from "../thunks/signInUser/signInUser.ts"
 
 export const SignUpCard = () => {
 	return (
@@ -33,7 +34,14 @@ export const SignUpCard = () => {
 	)
 }
 
-export const LoginCard = () => {
+export const LoginCard = ({ dispatch }: { dispatch: any }) => {
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	const handleSignIn = () => {
+		dispatch(signInUserThunkCreator({email, password}))
+	}
+
 	return (
 		<Fragment >
 			<div className="flex flex-col items-center justify-between w-2/4 border-2 border-[#242F2B] p-10 rounded-3xl">
@@ -43,12 +51,18 @@ export const LoginCard = () => {
 				<div className="flex flex-col py-2 px-3 gap-3 rounded-2xl w-full pt-10 text-sm">
 					<input placeholder="Email"
 								 className="rounded-md bg-inherit border border-[#242F2B] py-2 px-3 text-sm w-full h-10 outline-white outline-offset-2 focus:outline focus:outline-2"
-								 type="text" name="Email"/>
+								 type="text" name="Email"
+								 onChange={(e) => {setEmail(e.target.value)}}
+					/>
 					<input placeholder="Password"
 								 className="rounded-md bg-inherit border border-[#242F2B] py-2 px-3 text-sm w-full h-10 outline-white outline-offset-2 focus:outline focus:outline-2"
-								 type="text" name="Password"/>
-					<button type="submit"
-									className="mx-auto bg-[#f8fafc] font-medium text-[#020205] w-full h-10 rounded-md flex justify-center items-center cursor-pointer transition-colors ease-in-out hover:bg-[#f8fafc]/90 disabled:cursor-progress">
+								 type="password" name="Password"
+								 onChange={(e) => {setPassword(e.target.value)}}
+					/>
+					<button
+									className="mx-auto bg-[#f8fafc] font-medium text-[#020205] w-full h-10 rounded-md flex justify-center items-center cursor-pointer transition-colors ease-in-out hover:bg-[#f8fafc]/90 disabled:cursor-progress"
+									onClick={handleSignIn}
+					>
 						Sign In
 					</button>
 					<div className="text-gray-600 dark:text-gray-400 text-center mt-4 text-sm">
@@ -60,10 +74,10 @@ export const LoginCard = () => {
 	)
 }
 
-export const AuthCard = ({authScreen}: { authScreen: AuthTypes }) => {
+export const AuthCard = ({authScreen, dispatch}: { authScreen: AuthTypes, dispatch: any }) => {
 	return (
 		<Fragment>
-			{authScreen === AuthTypes.SIGNUP ? <SignUpCard/> : <LoginCard/>}
+			{authScreen === AuthTypes.SIGNUP ? <SignUpCard/> : <LoginCard dispatch={dispatch}/>}
 		</Fragment>
 	)
 }

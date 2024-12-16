@@ -14,7 +14,7 @@ export type SignUpUserDTO = {
 
 export const authDP = () => {
 	return {
-		signUpWithEmailAndPassword: (name: string, email: string, password: string): Promise<SignUpUserDTO> => {
+		signUpWithEmailAndPassword: async (name: string, email: string, password: string): Promise<SignUpUserDTO> => {
 			return post({
 				url: SIGN_UP_USER,
 				body: JSON.stringify({ name, email, password  }),
@@ -24,7 +24,7 @@ export const authDP = () => {
 			})
 		},
 
-		signInWithEmailAndPassword: (email: string, password: string): Promise<SignInUserDTO> => {
+		signInWithEmailAndPassword: async (email: string, password: string): Promise<SignInUserDTO> => {
 			return post({
 				url: SIGN_UP_USER,
 				body: JSON.stringify({
