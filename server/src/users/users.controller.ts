@@ -29,6 +29,7 @@ export class UsersController {
   async loginUser(@Body() user: CreateUserDto) {
     const email = user.email;
     const password = user.password;
+    console.log(email, password);
     return await this.authService.login(email, password);
   }
 }

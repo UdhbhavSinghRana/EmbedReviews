@@ -5,10 +5,12 @@ export const signInUser = async ({dataProvider, getState, email, password}, disp
 	console.log(dataProvider);
 	let res
 	try {
-		res = await dataProvider.authUser.signUpWithEmailAndPassword(email, password);
+		res = await dataProvider.authUser.signInWithEmailAndPassword(email, password);
 	} catch (error) {
 		console.error(error);
 	}
+
+	console.log(res);
 	return res;
 }
 

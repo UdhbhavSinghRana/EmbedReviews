@@ -1,7 +1,7 @@
 import HTTPStatus from 'http-status'
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
-export const DEFAULT_HEADERS = { 'Content-Type': '*/*' }
+export const DEFAULT_HEADERS = { 'Content-Type': 'application/json' }
 export const CONTENT_TYPE_JSON_HEADER = {
 	'Content-Type': 'application/json',
 }
@@ -35,7 +35,7 @@ const success = (response: any): Promise<any> | undefined => {
 export const post = ({url, body, headers}: {url: string, body?: any, headers?: any}) : Promise<any>  => {
 	return fetch(url, {
 		method: 'POST',
-		body: JSON.stringify(body),
+		body: body,
 		headers: headers
 	}).then(success)
 }

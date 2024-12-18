@@ -1,5 +1,5 @@
 import { CONTENT_TYPE_JSON_HEADER, DEFAULT_HEADERS, post } from "../../shared/utils/rest.ts"
-import { SIGN_UP_USER } from "./endpointsConst.ts"
+import { SIGN_IN_USER, SIGN_UP_USER } from "./endpointsConst.ts"
 
 export type SignInUserDTO = {
 	email: string;
@@ -26,7 +26,7 @@ export const authDP = () => {
 
 		signInWithEmailAndPassword: async (email: string, password: string): Promise<SignInUserDTO> => {
 			return post({
-				url: SIGN_UP_USER,
+				url: SIGN_IN_USER,
 				body: JSON.stringify({
 					email,
 					password
