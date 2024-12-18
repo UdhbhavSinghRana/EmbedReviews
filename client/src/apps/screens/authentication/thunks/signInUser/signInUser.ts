@@ -13,7 +13,7 @@ export const signInUser = async ({dataProvider, getState, email, password}, disp
 }
 
 export function signInUserThunkCreator({ email, password }: { email: string; password: string }) {
-	return function signInUserThunk({ dataProvider }, getState, dispatch) {
+	return function signInUserThunk(getState, dispatch, {dataProvider}) {
 		return signInUser({
 			dataProvider,
 			getState,
