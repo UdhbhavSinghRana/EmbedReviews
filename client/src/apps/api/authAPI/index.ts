@@ -32,6 +32,8 @@ export const authDP = () => {
 					password
 				}),
 				headers: DEFAULT_HEADERS,
+			}).then((res: SignUpUserDTO) => {
+				return res
 			}).catch(() => {
 				throw new Error(SIGN_UP_USER)
 			})
