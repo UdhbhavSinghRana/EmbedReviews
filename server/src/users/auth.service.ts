@@ -1,11 +1,18 @@
 import { UsersService } from './users.service';
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { comparePassword, encodePassword } from '../utils/bcrypt';
-import { JwtService } from "@nestjs/jwt"
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UsersService, private jwtService: JwtService) {}
+  constructor(
+    private userService: UsersService,
+    private jwtService: JwtService,
+  ) {}
 
   signUp = async (name: string, email: string, password: string) => {
     const user = await this.userService.find(email);
