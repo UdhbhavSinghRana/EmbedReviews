@@ -1,10 +1,11 @@
 import { UsersService } from './users.service';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { comparePassword, encodePassword } from '../utils/bcrypt';
+import { JwtService } from "@nestjs/jwt"
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UsersService) {}
+  constructor(private userService: UsersService, private jwtService: JwtService) {}
 
   signUp = async (name: string, email: string, password: string) => {
     const user = await this.userService.find(email);
@@ -14,7 +15,21 @@ export class AuthService {
 
     const encodedPassword = await encodePassword(password);
 
-    return await this.userService.create(name, email, encodedPassword);
+    const createdUser = await this.userService.create(
+      name,
+      email,
+      encodedPassword,
+    );
+
+    const payload = {
+      sub: createdUser.id,
+      username: createdUser.name,
+      email: createdUser.email,
+    };
+
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   };
 
   login = async (email: string, password: string) => {
@@ -24,8 +39,16 @@ export class AuthService {
     }
 
     const matched = await comparePassword(password, userDB.password);
-    if (!matched) throw new BadRequestException('Wrong password');
+    if (!matched) throw new UnauthorizedException('Wrong password');
 
-    return userDB;
+    const payload = {
+      sub: userDB.id,
+      username: userDB.name,
+      email: userDB.email,
+    };
+
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   };
 }
